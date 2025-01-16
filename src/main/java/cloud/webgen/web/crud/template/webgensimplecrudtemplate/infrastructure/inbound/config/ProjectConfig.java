@@ -2,8 +2,23 @@ package cloud.webgen.web.crud.template.webgensimplecrudtemplate.infrastructure.i
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @ComponentScan("cloud.webgen.web.crud.mongodb")
-public class ProjectConfig{
+@Component
+@EnableWebMvc
+public class ProjectConfig implements WebMvcConfigurer {
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("PUT", "DELETE", "POST", "GET", "OPTIONS")
+                .allowedHeaders("Authorization", "Content-Type")
+                .allowCredentials(true)
+                .maxAge(3600);
+    }
 }
