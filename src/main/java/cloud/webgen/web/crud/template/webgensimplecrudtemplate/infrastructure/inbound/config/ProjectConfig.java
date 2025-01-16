@@ -18,7 +18,6 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .allowedOrigins("*")
                 .allowedMethods("PUT", "DELETE", "POST", "GET", "OPTIONS")
                 .allowedHeaders("Authorization", "Content-Type")
-                .allowCredentials(true)
                 .maxAge(3600);
     }
 }
